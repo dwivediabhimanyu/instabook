@@ -1,0 +1,9 @@
+<ion-button
+  color="primary"
+  type="submit"
+  [disabled]="!isLoggedIn"
+  [hidden]="!isLoggedIn"
+  (click)="presentUploadForm($event)"
+>
+  Create a New Post
+</ion-button>
