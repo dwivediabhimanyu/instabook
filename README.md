@@ -42,6 +42,16 @@ URL=
 docker run --name instabook-api -p 8080:8080 --env-file env.list -d abhimanyudwivedi/instabook-api
 ```
 
+
+#### Frontend
+
+1. Pull the public image from DockerHub using command `docker pull abhimanyudwivedi/instabook-frontend:latest`
+2. Run the image
+```
+docker run --name instabook-frontend --expose=80 -p 8081:80  --env-file env.list -d abhimanyudwivedi/instabook-frontend
+```
+
+
 ### Database
 
 Create a PostgreSQL database either locally or on AWS RDS. Set the config values for environment variables prefixed with `POSTGRES_` in `set_env.sh`.
