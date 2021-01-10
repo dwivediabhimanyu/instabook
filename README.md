@@ -1,5 +1,11 @@
 ![header](https://dvlprabhi-dp.vercel.app/?text=InstaBook)
 
+### Project Status 
+[![Build Status](https://travis-ci.org/dwivediabhimanyu/instabook.svg?branch=main)](https://travis-ci.org/dwivediabhimanyu/instabook)
+
+
+### Description 
+
 InstaBook is a simple cloud application. It allows users to register and log into a web client, post photos to the feed.
 
 The project is split into two parts:
