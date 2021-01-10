@@ -1,4 +1,5 @@
-# InstaBook
+![header](https://dvlprabhi-dp.vercel.app/?text=InstaBook)
+
 
 InstaBook is a simple cloud application. It allows users to register and log into a web client, post photos to the feed.
 
@@ -51,3 +52,7 @@ Create an AWS S3 bucket. Set the config values for environment variables prefixe
 - Run the application locally using files created from the `ionic build` command.
   `bash ionic serve `
   You can visit `http://localhost:8100` in your web browser to verify that the application is running. You should see a web interface.
+  
+  ---
+
+If you liked Dynamic Text Header used in this README, check it out [here](https://gist.github.com/dwivediabhimanyu/f7f11956abc3ebd8015a668834c3d6c0) .a
