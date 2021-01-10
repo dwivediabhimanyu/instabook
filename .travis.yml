@@ -14,15 +14,13 @@ before_script:
   - echo "no tests for now"
 
 script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker --version # print the version for logging
   - cd api #api image
   - docker build -t abhimanyudwivedi/instabook-api .
-  - docker tag instabook-api abhimanyudwivedi/instabook-api:latest
   - cd ../frontend #frontend image
   - docker build -t abhimanyudwivedi/instabook-frontend .
-  - docker tag instabook-frontend abhimanyudwivedi/instabook-frontend:latest
 
 after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push abhimanyudwivedi/instabook-api
   - docker push abhimanyudwivedi/instabook-frontend
