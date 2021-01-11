@@ -1,19 +1,23 @@
 ![header](https://dvlprabhi-dp.vercel.app/?text=InstaBook)
 
-### Project Status 
+### Project Status
+
 [![Build Status](https://travis-ci.org/dwivediabhimanyu/instabook.svg?branch=main)](https://travis-ci.org/dwivediabhimanyu/instabook)
 
+## Description
 
-### Description 
+![Dashoboard](/screenshots/dashboard.png "Optional Title")
 
 InstaBook is a simple cloud application. It allows users to register and log into a web client, post photos to the feed.
 
-The project is split into two parts:
+The project is split into two services:
 
 1. Frontend - Angular web application built with Ionic Framework
 2. Backend RESTful API - Node-Express application
 
-### Requirements
+Tags- angular, ionic, express, postgres, sequelize, s3-storage, docker, travis-ci
+
+## Requirements
 
 Download and install Node from [https://nodejs.com/en/download](https://nodejs.org/en/download/)
 
@@ -21,7 +25,15 @@ Download and install Node from [https://nodejs.com/en/download](https://nodejs.o
 
 A file named `env.list` is present in root of repository. Use this to configure variables for your local development environment.
 
-### Docker Image
+### Database
+
+Create a PostgreSQL database either locally or on AWS RDS. Set the config values for environment variables prefixed with `POSTGRES_` in `env.list`.
+
+### AWS S3
+
+Create an AWS S3 bucket. Set the config values for environment variables prefixed with `AWS_` in `env.list`. Make sure to configure AWS command line tools on machine and configure with proper IAM profile.
+
+## Setup Project via Docker Image
 
 #### Backend-API
 
@@ -29,42 +41,49 @@ A file named `env.list` is present in root of repository. Use this to configure 
 2. Pull the public image from DockerHub using command `docker pull abhimanyudwivedi/instabook-api:latest`
 3. Create a file `env.list` which contains environment variables for application.
 
-```
-$ cat > env.list
-POSTGRES_USERNAME=
-POSTGRES_PASSWORD=
-POSTGRES_HOST=
-POSTGRES_DB=
-AWS_BUCKET=
-AWS_REGION=
-AWS_PROFILE=
-JWT_SECRET=
-URL=
-```
+   ```
+   $ cat > env.list
+   POSTGRES_USERNAME=
+   POSTGRES_PASSWORD=
+   POSTGRES_HOST=
+   POSTGRES_DB=
+   AWS_BUCKET=
+   AWS_REGION=
+   AWS_PROFILE=
+   JWT_SECRET=
+   URL=
+   ```
 
-4.  Run the image.
+4. Run the image.
 
-```
-docker run --name instabook-api -p 8080:8080 --env-file env.list -d abhimanyudwivedi/instabook-api
-```
-
+   ```
+   docker run --name instabook-api -p 8080:8080 --env-file env.list -d abhimanyudwivedi/instabook-api
+   ```
 
 #### Frontend
 
-1. Pull the public image from DockerHub using command `docker pull abhimanyudwivedi/instabook-frontend:latest`
-2. Run the image
-```
-docker run --name instabook-frontend --expose=80 -p 8081:80  --env-file env.list -d abhimanyudwivedi/instabook-frontend
-```
+1. Pull the public image from DockerHub using command
+   `docker pull abhimanyudwivedi/instabook-frontend:latest`
+2. Run the image.
+   ```
+   docker run --name instabook-frontend --expose=80 -p 8081:80  --env-file env.list -d abhimanyudwivedi/instabook-frontend
+   ```
 
+## Setup Project on Kubernetes Cluster on AWS
 
-### Database
+1. AWS Command Line Tools. Verify by running `aws --version`.
+2. Configure a EKS Clusture on AWS with required nodes.
+3. [Install](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html) kubectl.
+4. [Setup](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html) aws-iam-authenticator
+5. Update kubeconfig to bind kubectl to EKS.
+   `aws eks --region <region-code> update-kubeconfig --name <cluster_name>`
+6. From root of project folder navigate to `api` & `frontend` directories separately . Both folders contains a sub-directory `k8s/` containing `deployment.yaml` and `service.yaml` files for individual micro-services. Import all 4 yaml files to EKS using following command.
+   `kubectl apply -f deployment.yaml`
+   `kubectl apply -f service.yaml`
 
-Create a PostgreSQL database either locally or on AWS RDS. Set the config values for environment variables prefixed with `POSTGRES_` in `set_env.sh`.
+To verify the functionality, we can run the commands `kubectl get pods` and `kubectl describe services`.
 
-### S3
-
-Create an AWS S3 bucket. Set the config values for environment variables prefixed with `AWS_` in `set_env.sh`.
+## Setup Project with NPM
 
 ### Back-end API
 
