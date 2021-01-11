@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: instabook-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: instabook-api
+  template:
+    metadata:
+      labels:
+        app: instabook-api
+    spec:
+      containers:
+        - name: instabook-api
+          image: abhimanyudwivedi/instabook-api
+          ports:
+            - containerPort: 8080
