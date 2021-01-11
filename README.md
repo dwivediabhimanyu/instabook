@@ -6,8 +6,6 @@
 
 ## Description
 
-![Dashoboard](/screenshots/dashboard.png "Optional Title")
-
 InstaBook is a simple cloud application. It allows users to register and log into a web client, post photos to the feed.
 
 The project is split into two services:
@@ -114,6 +112,10 @@ To verify the functionality, we can run the commands `kubectl get pods` and `kub
   `bash ionic serve `
   You can visit `http://localhost:8100` in your web browser to verify that the application is running. You should see a web interface.
 
-  ***
+## Screenshots
+
+![Dashoboard](/screenshots/dashboard.png)
+
+---
 
 If you liked Dynamic Text Header used in this README, check it out [here](https://gist.github.com/dwivediabhimanyu/f7f11956abc3ebd8015a668834c3d6c0) .
